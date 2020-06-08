@@ -73,7 +73,7 @@
     <div>
       <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
     </div>
-
+    <pre id = 'reqForm'></pre>
     <form class="form-inline d-flex" id='requestForm'>
       <!-- input PC name -->
       <p class = "a" style="padding-left: 40px; margin-bottom: 15px; margin-top: 25px;"> Podcast Name</p>
@@ -91,17 +91,18 @@
       <p class = "a" style="padding-left: 40px; margin-bottom: 15px; margin-top: 25px;"> Your Email *</p>
       <input type="email" id="inputEmail" required>
       
-      
       <button type="submit" >Submit</button>
 
     </form>
 
     <!-- input file
+      onclick="window.location.href = 'https://publish.spext.co';"
     <input type="file" onchange="uploadFile(this.files)">
     
     <img id ="imgUpload" src=""width="100vm"> -->
 
-    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
+    <script src="app.js"></script>
   </body>
   
 </html>
