@@ -11,9 +11,9 @@ const config = {
 
 firebase.initializeApp(config);
 
-var requests = firebase.database().ref("requests");
+var requests = firebase.database().ref("podcast-requests");
 
-document.getElementById("form").addEventListener("submit",(e)=>{
+document.getElementById("form").addEventListener("submit",(e) =>{
     e.preventDefault();
 
     var requestForm = requests.push();
@@ -26,8 +26,9 @@ document.getElementById("form").addEventListener("submit",(e)=>{
         userEmail : getID("inputEmail")
     });
     alert("Request submitted!");
-    console.log("sent");
+    console.log("Request submitted");
     document.getElementById("form").reset();
+    window.location.href = 'https://publish.spext.co';
 });
 
 function getID(id) {
