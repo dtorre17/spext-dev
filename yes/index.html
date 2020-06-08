@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
 
-     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-     <script src="/__/firebase/7.14.5/firebase-app.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.15.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.15.0/firebase-analytics.js"></script>
+
     <!-- include only the Firebase features as you need -->
     <!-- Add Firebase products that you want to use -->
     <script defer src="/__/firebase/7.14.5/firebase-auth.js"></script>
@@ -30,14 +35,73 @@
         font: 36px Quicksand;
         color:white;
       }
+
+      .shadow {
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin-left: 40px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+        padding-left: 40px;
+        max-width: 90%;
+      }
+      input {
+        font: 16px Quicksand;
+        border  : none;
+        margin-left  : 40px;
+        width : 25%;
+        height: 30px;
+        background : white;
+        border-radius: 5px;
+      }
+
+      button {
+        font: 18px Quicksand;
+        background : #A0A4D9;
+        width : 15%;
+        height: 30px;
+        border  : none;
+        border-radius: 5px;
+        margin-bottom: 100px;
+        margin-left: 10px;
+      }
+
     </style>
   </head>
   <body>
 
-    <p class="b" style="padding: 40px;">Request A Podcast</p>
+    <p class="b" style="padding-left: 40px; padding-top: 40px;">Request A Podcast</p>
+    <div>
+      <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
+    </div>
+
+    <form class="form-inline d-flex">
+      <!-- input PC name -->
+      <p class = "a" style="padding-left: 40px; margin-bottom: 15px; margin-top: 25px;"> Podcast Name</p>
+      <input type="text" id="inputPCName">
+      <!-- input PC URL -->
+      <p class = "a" style="padding-left: 40px; margin-bottom: 15px; margin-top: 25px;"> Podcast URL *</p>
+      <input type="url" id="inputPCURL" required>
+      <!-- input Add. info -->
+      <p class = "a" style="padding-left: 40px; margin-bottom: 15px; margin-top: 25px;"> Additional Information</p>
+      <input type="text" id="inputDescription" required>
+      <!-- input user Name -->
+      <p class = "a" style="padding-left: 40px; margin-bottom: 15px; margin-top: 25px;"> Your Name</p>
+      <input type="text" id="inputUserName">
+      <!-- input user Emai -->
+      <p class = "a" style="padding-left: 40px; margin-bottom: 15px; margin-top: 25px;"> Your Email *</p>
+      <input type="email" id="inputEmail" required>
+      
+      
+      <button type="submit" class="btn btn-primary mx-auto">Submit</button>
+
+    </form>
+
+    <!-- input file
     <input type="file" onchange="uploadFile(this.files)">
-    <hr>
-    <img id ="imgUpload" src=""width="100vm">
+    
+    <img id ="imgUpload" src=""width="100vm"> -->
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
   </body>
   
 </html>
