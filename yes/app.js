@@ -13,30 +13,23 @@ firebase.initializeApp(config);
 
 var requests = firebase.database().ref("requests");
 
-var submitRequest = function() {
-    
-    var inputPCName = $("#inputPCName").val();
-    var inputPCURL = $("#inputPCURL").val();
-    var inputDescription = $("#inputDescription").val();
-    var inputUserName = $("#inputUserName").val();
-    var inputEmail = $("#inputEmail").val();
+document.getElementById("form").addEventListener("submit",(e)=>{
+    e.preventDefault();
 
-    
+    var requestForm = requests.push();
 
-    requests.push({
-        "inputPCName": inputPCName,
-        "inputPCURL" : inputPCURL,
-        "inputDescription" : inputDescription,
-        "inputUserName": inputUserName,
-        "inputEmail" : inputEmail
+    requestForm.set({
+        podcastName : getID("inputPCName"),
+        podcastURL : getID("inputPCURL"),
+        podcastInfo : getID("inputDescription"),
+        userName : getID("inputUserName"),
+        userEmail : getID("inputEmail")
     });
-
-};
-
-$(window).load(function () {
-
-    // Find the HTML element with the id recommendationForm, and when the submit
-    // event is triggered on that element, call submitRecommendation.
-    $("#myForm").submit(submitRequest);
-  
+    alert("Request submitted!");
+    console.log("sent");
+    document.getElementById("form").reset();
 });
+
+function getID(id) {
+    return document.getElementById(id).value;
+}
