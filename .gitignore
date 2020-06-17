@@ -63,3 +63,5 @@ node_modules/
 
 # dotenv environment variables file
 .env
+progress/.DS_Store
+progress/06-08-request1.png
