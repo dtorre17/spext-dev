@@ -94,7 +94,7 @@
   </head>
   <body>
 
-    <p class="b">Request A Podcast</p>
+    <p class="b">Upload A Podcast</p>
   
     <div>
       <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
@@ -102,20 +102,20 @@
     <pre id = 'reqForm'></pre>
     <form class="form-inline d-flex" id='form'>
       <!-- input PC name -->
-      <p class = "a" id="input1"> Podcast Name</p>
-      <input type="text" id="inputPCName">
-      <!-- input PC URL -->
-      <p class = "a" id="input1"> Podcast URL *</p>
-      <input type="url" id="inputPCURL" required>
+      <p class = "a" id="input1"> Podcast Name *</p>
+      <input type="text" id="inputPCName" required>
+      <!-- input Episode Name -->
+      <p class = "a" id="input1"> Episode Name *</p>
+      <input type="text" id="inputEpisodeName" required>
       <!-- input Add. info -->
-      <p class = "a" id="input1"> Additional Information</p>
-      <input type="text" id="inputDescription">
-      <!-- input user Name -->
-      <p class = "a" id="input1"> Your Name</p>
-      <input type="text" id="inputUserName">
+      <p class = "a" id="input1"> Additional Information *</p>
+      <input type="text" id="inputDescription" required>
       <!-- input user Emai -->
-      <p class = "a" id="input1"> Your Email *</p>
-      <input type="email" id="inputEmail" required>
+      <p class = "a" id="input1"> Your Email</p>
+      <input type="email" id="inputEmail">
+      <!-- input RSS URL -->
+      <p class = "a" id="input1"> RSS Link</p>
+      <input type="url" id="inputPCURL">
       
       <button type="submit" >Submit</button>
       
@@ -128,8 +128,8 @@
     <img id ="imgUpload" src=""width="100vm"> -->
 
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
-    
-    <script src="app.js"></script>
+
+    <script src="app-upload.js"></script>
   </body>
   
 </html>
