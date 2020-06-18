@@ -53,16 +53,6 @@
         padding-left: 40px;
         max-width: 90%;
       }
-      input {
-        font-family: 'Quicksand', sans-serif;
-        font-size: 16px;
-        border  : none;
-        margin-left  : 40px;
-        width : 25%;
-        height: 30px;
-        background : white;
-        border-radius: 5px;
-      }
 
       button {
         font-family: 'Quicksand', sans-serif;
@@ -72,8 +62,19 @@
         height: 30px;
         border  : none;
         border-radius: 5px;
-        margin-bottom: 100px;
-        margin-left: 10px;
+        margin-bottom: 40px;
+        margin-left: 40px;
+      }
+      button.b {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 14px;
+        background : white;
+        width : 175px;
+        height: 30px;
+        border  : none;
+        border-radius: 5px;
+        margin-bottom: 40px;
+        margin-left: 40px;
       }
 
       #input1 {
@@ -82,31 +83,42 @@
         margin-top: 25px;
       }
 
-      #button2 {
-        margin-bottom: 20px;
+      .button2 {
         font-family: 'Quicksand', sans-serif;
         font-size: 18px;
-        background : white;
+        background : none;
+        border  : none;
+        margin-bottom: 50px;
+        margin-left: 40px;
       }
 
     </style>
   </head>
   <body>
 
-    <p class="b">Step 2</p>
+    <p class="b">Upload Album Art</p>
   
     <div>
       <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
     </div>
     <pre id = 'reqForm'></pre>
     <form class="form-inline d-flex" id='uploads'>
-      <!-- input PC name -->
-      <p class = "a" id="input1"> Podcast Name *</p>
-      <input type="text" id="inputPCName" required>
-      <!-- input Episode Name -->
-      <p class = "a" id="input1"> Episode Name *</p>
-      <input type="text" id="inputEpisodeName" required>
-      <button type="submit" >Submit</button>
+      <!-- go back -->
+      <div id="container">
+        <div class= "button">
+          <button class="b" onclick="goBack()">go back to form</button>
+        </div>
+
+        <div>
+          <!-- upload art -->
+          <p class = "a" id="input1">Upload Album Art *</p>
+          <input class="button2" type="file" onchange="uploadFile(this.files)">
+          <img id ="imgUpload" src="" width="100vm">
+        </div>
+        <div>
+          <button type="submit" >Submit</button>
+        </div>
+      </div>
 
     </form>
 
@@ -119,6 +131,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
 
     <script src="app.js"></script>
+    
   </body>
   
 </html>

@@ -11,6 +11,8 @@ const config = {
 
 firebase.initializeApp(config);
 
+const history = createBrowserHistory();
+
 var requests = firebase.database().ref("podcast-requests");
 
 document.getElementById("form").addEventListener("submit",(e) =>{
@@ -23,7 +25,8 @@ document.getElementById("form").addEventListener("submit",(e) =>{
         podcastURL : getID("inputPCURL"),
         podcastInfo : getID("inputDescription"),
         userName : getID("inputUserName"),
-        userEmail : getID("inputEmail")
+        userEmail : getID("inputEmail"),
+        artFile : uploadFile("imgUpload")
     });
     
     alert("Request submitted!");
@@ -50,7 +53,8 @@ document.getElementById("uploads").addEventListener("submit",(e) =>{
         episodeName : getID("inputEpisodeName"),
         podcastInfo : getID("inputDescription"),
         userEmail : getID("inputEmail"),
-        rSS : getID("inputRSS")
+        rSS : getID("inputRSS"),
+        fileUpload : uploadFile("imgUpload")
     });
     
     alert("Request submitted!");
@@ -58,3 +62,23 @@ document.getElementById("uploads").addEventListener("submit",(e) =>{
     document.getElementById("uploads").reset();
     window.location.href = 'https://publish.spext.co';
 });
+
+function uploadFile(files) {
+    const storageRef = firebase.ref("published-episodes");
+    const artFile = storageRef.child('art-file');
+
+    const file = files.item(0);
+
+    const task = artFile.put(file);
+
+    task.then(snapshot => {
+        console.log(snapshot)
+        const url = snapshot.downloadURL
+        document.querySelector('#imgUpload').setAttribute('src', url)
+    });
+    return task;
+} 
+
+function goBack() {
+  this.history.back();
+}
