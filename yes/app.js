@@ -25,6 +25,7 @@ document.getElementById("form").addEventListener("submit",(e) =>{
         userName : getID("inputUserName"),
         userEmail : getID("inputEmail")
     });
+    
     alert("Request submitted!");
     console.log("Request submitted");
     document.getElementById("form").reset();
@@ -34,3 +35,26 @@ document.getElementById("form").addEventListener("submit",(e) =>{
 function getID(id) {
     return document.getElementById(id).value;
 }
+
+
+// script for 2 step upload form
+var uploads = firebase.database().ref("published-episodes");
+
+document.getElementById("uploads").addEventListener("submit",(e) =>{
+    e.preventDefault();
+
+    var uploadForm = uploads.push();
+
+    uploadForm.set({
+        podcastName : getID("inputPCName"),
+        episodeName : getID("inputEpisodeName"),
+        podcastInfo : getID("inputDescription"),
+        userEmail : getID("inputEmail"),
+        rSS : getID("inputRSS")
+    });
+    
+    alert("Request submitted!");
+    console.log("Request submitted");
+    document.getElementById("uploads").reset();
+    window.location.href = 'https://publish.spext.co';
+});

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Project 2: Upload a Podcast Form</title>
+    <title>Project 2: Upload a Podcast Form Step 2</title>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="/__/firebase/7.15.0/firebase-app.js"></script>
@@ -64,16 +64,16 @@
         border-radius: 5px;
       }
 
-      #button2 {
-        border  : none;
+      button {
         font-family: 'Quicksand', sans-serif;
-        color: white;
-        font-size: 24px;
+        font-size: 18px;
+        background : #A0A4D9;
         width : 15%;
         height: 30px;
+        border  : none;
+        border-radius: 5px;
         margin-bottom: 100px;
         margin-left: 10px;
-        padding-bottom: 100px;
       }
 
       #input1 {
@@ -82,11 +82,18 @@
         margin-top: 25px;
       }
 
+      #button2 {
+        margin-bottom: 20px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 18px;
+        background : white;
+      }
+
     </style>
   </head>
   <body>
 
-    <p class="b">Upload A Podcast</p>
+    <p class="b">Step 2</p>
   
     <div>
       <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
@@ -99,17 +106,7 @@
       <!-- input Episode Name -->
       <p class = "a" id="input1"> Episode Name *</p>
       <input type="text" id="inputEpisodeName" required>
-      <!-- input Add. info -->
-      <p class = "a" id="input1"> Description *</p>
-      <input type="text" id="inputDescription" required>
-      <!-- input user Emai -->
-      <p class = "a" id="input1"> Your Email</p>
-      <input type="email" id="inputEmail">
-      <!-- input RSS URL -->
-      <p class = "a" id="input1"> RSS Link</p>
-      <input type="url" id="inputRSS">
-      <a id="button2" href="publish-step2.html" >Next</a>
-      
+      <button type="submit" >Submit</button>
 
     </form>
 
