@@ -26,7 +26,7 @@ document.getElementById("form").addEventListener("submit",(e) =>{
         podcastInfo : getID("inputDescription"),
         userName : getID("inputUserName"),
         userEmail : getID("inputEmail"),
-        artFile : uploadFile("imgUpload")
+        
     });
     
     alert("Request submitted!");
@@ -39,11 +39,10 @@ function getID(id) {
     return document.getElementById(id).value;
 }
 
-
 // script for 2 step upload form
 var uploads = firebase.database().ref("published-episodes");
 
-document.getElementById("uploads").addEventListener("submit",(e) =>{
+document.getElementById("uploads").addEventListener("submit",(e) => {
     e.preventDefault();
 
     var uploadForm = uploads.push();
@@ -54,7 +53,7 @@ document.getElementById("uploads").addEventListener("submit",(e) =>{
         podcastInfo : getID("inputDescription"),
         userEmail : getID("inputEmail"),
         rSS : getID("inputRSS"),
-        fileUpload : uploadFile("imgUpload")
+        fileUpload : getID("file")
     });
     
     alert("Request submitted!");
@@ -63,21 +62,59 @@ document.getElementById("uploads").addEventListener("submit",(e) =>{
     window.location.href = 'https://publish.spext.co';
 });
 
-function uploadFile(files) {
-    const storageRef = firebase.ref("published-episodes");
-    const artFile = storageRef.child('art-file');
 
-    const file = files.item(0);
+document.getElementById('file').addEventListener('change', handleFileSelect, false);
+document.getElementById('file').disabled = true;
 
-    const task = artFile.put(file);
+function handleFileSelect(evt) {
 
-    task.then(snapshot => {
-        console.log(snapshot)
-        const url = snapshot.downloadURL
-        document.querySelector('#imgUpload').setAttribute('src', url)
-    });
-    return task;
-} 
+    evt.stopPropagation();
+    evt.preventDefault();
+    var file = evt.target.files[0];
+
+      var metadata = {
+        'contentType': file.type
+      };
+
+        const imgRef = uploads.child('artfile.jpg');
+
+        const file = files.item(0);
+
+        const task = imgRef.put(file);
+
+        // successful upload
+        task.then(snapshot => {
+            const url = snapshot.downloadURL
+        })
+
+        // monitor progress
+        task.on('state_changed', snapshot => {
+            console.log(snapshot)
+
+        })
+    /*
+
+      // Push to child path.
+      // [START oncomplete]
+      uploads.child('images/' + file.name).put(file, metadata).then(function(snapshot) {
+        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+        console.log('File metadata:', snapshot.metadata);
+        // Let's get a download URL for the file.
+        snapshot.ref.getDownloadURL().then(function(url) {
+          console.log('File available at', url);
+          // [START_EXCLUDE]
+          document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click For File</a>';
+          // [END_EXCLUDE]
+        });
+      }).catch(function(error) {
+        // [START onfailure]
+        console.error('Upload failed:', error);
+        // [END onfailure]
+      });
+      // [END oncomplete]
+    */
+    
+}
 
 function goBack() {
   this.history.back();

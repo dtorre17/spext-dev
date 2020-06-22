@@ -69,7 +69,7 @@
         font-family: 'Quicksand', sans-serif;
         font-size: 14px;
         background : white;
-        width : 175px;
+        width : 100px;
         height: 30px;
         border  : none;
         border-radius: 5px;
@@ -80,7 +80,7 @@
       #input1 {
         padding-left: 40px; 
         margin-bottom: 15px; 
-        margin-top: 25px;
+        margin-top: 10px;
       }
 
       .button2 {
@@ -90,6 +90,12 @@
         border  : none;
         margin-bottom: 50px;
         margin-left: 40px;
+      }
+
+      #file {
+        padding-left: 40px; 
+        margin-bottom: 15px; 
+        margin-top: 10px;
       }
 
     </style>
@@ -106,15 +112,20 @@
       <!-- go back -->
       <div id="container">
         <div class= "button">
-          <button class="b" onclick="goBack()">go back to form</button>
+          <a href = "javascript:window.history.back()"><button class="b">back</button></a>
+          
         </div>
 
         <div>
+          <pre id = 'uploads'></pre>
+          <form class="form-inline d-flex" id='uploads'>
           <!-- upload art -->
           <p class = "a" id="input1">Upload Album Art *</p>
-          <input class="button2" type="file" onchange="uploadFile(this.files)">
+          <input type="file" id="file" name="file" onchange="uploadFile(this.files)">
           <img id ="imgUpload" src="" width="100vm">
+          </form>
         </div>
+
         <div>
           <button type="submit" >Submit</button>
         </div>
@@ -129,7 +140,7 @@
     <img id ="imgUpload" src=""width="100vm"> -->
 
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
-
+    
     <script src="app.js"></script>
     
   </body>
