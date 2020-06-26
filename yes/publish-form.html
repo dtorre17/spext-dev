@@ -29,20 +29,22 @@
       body {
         background-color: #27293D;
       }
-      p.a {
+      #a {
         font-family: 'Quicksand', sans-serif;
         font-size: 18px;
         color: #A0A4D9;
+        padding-left: 40px; 
+
       }
 
-      p.b {
+      #b {
         font-family: 'Quicksand', sans-serif;
         font-size: 36px;
         color:white;
         margin-bottom: 20px;
         padding-left: 40px; 
         padding-top: 40px;
-        display: inline-block;
+        
       }
 
       .shadow {
@@ -64,17 +66,20 @@
         border-radius: 5px;
       }
 
-      #button2 {
+      .button2 {
         border  : none;
         border-radius: 5px;
         font-family: 'Quicksand', sans-serif;
         color: #8e92c4;
         background-color: white;
-        font-size: 24px;
-        width : 15%;
+        display: block;
+        font-size: 20px;
+        width : 10%;
         height: 30px;
-        margin-left: 25px;
+        margin-left: 40px;
         margin-bottom: 50px;
+        margin-top: 35px;
+        cursor: pointer;
       }
 
       #input1 {
@@ -83,58 +88,84 @@
         margin-top: 25px;
       }
 
-      #myDIV {
-        display: none;
+      #file {
+        margin-bottom: 15px; 
+        margin-top: 10px;
+        background-color: transparent;
+        color: wheat;
       }
+
+      .target { display: none; }
+      .step1 { display: block; }
 
     </style>
   </head>
   <body>
-
-    <p class="b">Upload A Podcast</p>
-  
-    <div>
+    <!-- step 1 -->
+  <div class="step1">
+    <p class="step1" id="b">Upload A Podcast</p>
+    <div class="step1">
       <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
     </div>
     <pre id = 'uploads'></pre>
     <form class="form-inline d-flex" id='uploads'>
       <!-- input PC name -->
-      <p class = "a" id="input1"> Podcast Name *</p>
-      <input type="text" id="inputPCName" required>
+      <p class="step1" id = "a" id="input1"> Podcast Name *</p>
+      <input class="step1" type="text" id="inputPCName" required>
       <!-- input Episode Name -->
-      <p class = "a" id="input1"> Episode Name *</p>
-      <input type="text" id="inputEpisodeName" required>
+      <p class="step1" id = "a" id="input1"> Episode Name *</p>
+      <input class="step1" type="text" id="inputEpisodeName" required>
       <!-- input Add. info -->
-      <p class = "a" id="input1"> Description *</p>
-      <input type="text" id="inputDescription" required>
+      <p class="step1" id = "a" id="input1"> Description *</p>
+      <input class="step1" type="text" id="inputDescription" required>
       <!-- input user Emai -->
-      <p class = "a" id="input1"> Your Email</p>
-      <input type="text" id="inputEmail">
+      <p class="step1" id="a" id="input1"> Your Email</p>
+      <input class="step1" type="text" id="inputEmail">
       <!-- input RSS URL -->
-      <p class = "a" id="input1"> RSS Link</p>
-      <input type="text" id="inputRSS">
+      <p class="step1" id="a" id="input1"> RSS Link</p>
+      <input class="step1" type="text" id="inputRSS">
+      <button id="toggle-button" class="button2">Next</button>
+  </div>
+    <!-- end of step 1 -->
+      <!-- PRACTICE 
+      <button id="toggle-button">Toggle display</button>
 
-      <button id="button2" onclick="nextFunction()">Next</a>
+      <span class="target">Toggle the span.</span>
+
+      <div class="target">Toggle the div.</div>-->
+    
+
       
       
-      <div id="myDIV">
-        <p class="b">Upload Album Art</p>
-        <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
-      
-        <pre id = 'uploads'></pre>
-      <form class="form-inline d-flex" id='uploads'>
-        <!-- go back -->
-        <div id="container">
-          <div>
-            <!-- upload art -->
-            <p class = "a" id="input1">Upload Album Art *</p>
-            <input type="file" id="file" name="file" onchange="uploadFile(this.files)">
-            <img id ="imgUpload" src="" width="100vm">
-          </div>
+<!-- step 2 -->
+    <div>
+        <p class="target" id="b">Upload Album Art</p>
+  
+        <div class="target">
+          <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
         </div>
-    </form>
-      
+        <pre id = 'reqForm'></pre>
+          <!-- go back -->
+          <div class="target" id="container">
+            <button id="toggle-back"class="button2">back</button>
+    
+            <div class="target">
+              <pre id = 'uploads'></pre>
+              <!-- upload art -->
+              <p id= "a" id="input1">Upload Album Art *</p>
+              <input type="file" id="file" name="file" onchange="uploadFile(this.files)">
+              <img id ="imgUpload" src="" width="100vm">
+            
+            </div>
+    
+            <div class="target">
+              <button type="submit" class="button2">Submit</button>
+            </div>
+          </div>  
     </div>
+        <!-- end of step 2-->
+      </form>
+
 
     <!-- input file
       onclick="window.location.href = 'https://publish.spext.co';"
@@ -144,15 +175,71 @@
 
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
     <script>
-      function nextFunction() {
-        var x = document.getElementById("myDIV");
-        if (x.style.display === "none") {
-          x.style.display = "flex";
+      
+      document.getElementById('toggle-button').addEventListener('click', function () {
+            toggle(document.querySelectorAll('.target'));
+        });
+        document.getElementById('toggle-back').addEventListener('click', function () {
+            toggle(document.querySelectorAll('.target'));
+        });
+
+    function toggle (elements, specifiedDisplay) {
+      var element, index;
+
+      elements = elements.length ? elements : [elements];
+      for (index = 0; index < elements.length; index++) {
+        element = elements[index];
+
+        if (isElementHidden(element)) {
+          element.style.display = '';
+
+          // If the element is still hidden after removing the inline display
+          if (isElementHidden(element)) {
+            element.style.display = specifiedDisplay || 'block';
+          }
         } else {
-          x.style.display = "flex";
+          element.style.display = 'none';
         }
       }
+      function isElementHidden (element) {
+        return window.getComputedStyle(element, null).getPropertyValue('display') === 'none';
+      }
+    }
     </script>
+
+    <script>
+      
+      document.getElementById('toggle-button').addEventListener('click', function () {
+            toggle(document.querySelectorAll('.step1'));
+        });
+        document.getElementById('toggle-back').addEventListener('click', function () {
+            toggle(document.querySelectorAll('.step1'));
+        });
+
+    function toggle (elements, specifiedDisplay) {
+      var element, index;
+
+      elements = elements.length ? elements : [elements];
+      for (index = 0; index < elements.length; index++) {
+        element = elements[index];
+
+        if (isElementHidden(element)) {
+          element.style.display = '';
+
+          // If the element is still hidden after removing the inline display
+          if (isElementHidden(element)) {
+            element.style.display = specifiedDisplay || 'block';
+          }
+        } else {
+          element.style.display = 'none';
+        }
+      }
+      function isElementHidden (element) {
+        return window.getComputedStyle(element, null).getPropertyValue('display') === 'none';
+      }
+    }
+    </script>
+
     <script src="app.js"></script>
   </body>
   
