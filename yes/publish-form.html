@@ -81,6 +81,22 @@
         margin-top: 35px;
         cursor: pointer;
       }
+      .button3 {
+        border  : none;
+        border-radius: 5px;
+        font-family: 'Quicksand', sans-serif;
+        color: white;
+        background-color: #8e92c4;
+        display: block;
+        font-size: 16px;
+        width : 175px;
+        height: 30px;
+        margin-left: 40px;
+        margin-bottom: 50px;
+        margin-top: 15px;
+        cursor: pointer;
+        text-align: center;
+      }
 
       #input1 {
         padding-left: 40px; 
@@ -98,34 +114,54 @@
       .target { display: none; }
       .step1 { display: block; }
 
+      label.upload-group {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 20px;
+        background-color: white;
+        width : 80px;
+        height: 40px;
+        margin-left: 40px;
+        margin-bottom: 50px;
+        margin-top: 35px;
+        cursor: pointer;
+        padding: 5 5 5 5;
+      }
+      input#file {
+        background-color: transparent;
+        width: .1px;
+        height: .1px;
+        position: absolute;
+        z-index: -1;
+      }
     </style>
   </head>
   <body>
     <!-- step 1 -->
-  <div class="step1">
-    <p class="step1" id="b">Upload A Podcast</p>
     <div class="step1">
-      <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
+      <p class="step1" id="b">Upload A Podcast</p>
+      <div class="step1">
+        <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
+      </div>
+      <pre id = 'uploads'></pre>
+      <form class="form-inline d-flex" id='uploads'>
+        <!-- input PC name -->
+        <p class="step1" id = "a" id="input1"> Podcast Name *</p>
+        <input class="step1" type="text" id="inputPCName" required>
+        <!-- input Episode Name -->
+        <p class="step1" id = "a" id="input1"> Episode Name *</p>
+        <input class="step1" type="text" id="inputEpisodeName" required>
+        <!-- input Add. info -->
+        <p class="step1" id = "a" id="input1"> Description *</p>
+        <input class="step1" type="text" id="inputDescription" required>
+        <!-- input user Emai -->
+        <p class="step1" id="a" id="input1"> Your Email</p>
+        <input class="step1" type="text" id="inputEmail">
+        <!-- input RSS URL -->
+        <p class="step1" id="a" id="input1"> RSS Link</p>
+        <input class="step1" type="text" id="inputRSS">
+      </form>
+        <button id="toggle-button" class="button2">Next</button>
     </div>
-    <pre id = 'uploads'></pre>
-    <form class="form-inline d-flex" id='uploads'>
-      <!-- input PC name -->
-      <p class="step1" id = "a" id="input1"> Podcast Name *</p>
-      <input class="step1" type="text" id="inputPCName" required>
-      <!-- input Episode Name -->
-      <p class="step1" id = "a" id="input1"> Episode Name *</p>
-      <input class="step1" type="text" id="inputEpisodeName" required>
-      <!-- input Add. info -->
-      <p class="step1" id = "a" id="input1"> Description *</p>
-      <input class="step1" type="text" id="inputDescription" required>
-      <!-- input user Emai -->
-      <p class="step1" id="a" id="input1"> Your Email</p>
-      <input class="step1" type="text" id="inputEmail">
-      <!-- input RSS URL -->
-      <p class="step1" id="a" id="input1"> RSS Link</p>
-      <input class="step1" type="text" id="inputRSS">
-      <button id="toggle-button" class="button2">Next</button>
-  </div>
     <!-- end of step 1 -->
       <!-- PRACTICE 
       <button id="toggle-button">Toggle display</button>
@@ -137,35 +173,36 @@
 
       
       
-<!-- step 2 -->
+    <!-- step 2 -->
     <div>
         <p class="target" id="b">Upload Album Art</p>
-  
+        
         <div class="target">
           <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
         </div>
-        <pre id = 'reqForm'></pre>
-          <!-- go back -->
+        <!--  <pre id = 'reqForm'></pre>
+          go back -->
           <div class="target" id="container">
             <button id="toggle-back"class="button2">back</button>
-    
+            <pre id = 'uploads'></pre>
+            <form class="form-inline d-flex" id='uploads'>
+                <div class="target">
+                  <!-- upload art -->
+                  
+                  <label class="button3"> 
+                    Upload Album Art *
+                    <input type="file" id="file" class="upload-group" required>
+                  </label>                
+                </div>
             <div class="target">
-              <pre id = 'uploads'></pre>
-              <!-- upload art -->
-              <p id= "a" id="input1">Upload Album Art *</p>
-              <input type="file" id="file" name="file" onchange="uploadFile(this.files)">
-              <img id ="imgUpload" src="" width="100vm">
-            
+              <button type="submit" class="button2" id="uploadButton">submit</button>
+              <!-- <button type="submit" class="button2">Submit</button> -->
             </div>
-    
-            <div class="target">
-              <button type="submit" class="button2">Submit</button>
-            </div>
+          </form>
           </div>  
     </div>
         <!-- end of step 2-->
-      </form>
-
+    
 
     <!-- input file
       onclick="window.location.href = 'https://publish.spext.co';"
@@ -174,8 +211,8 @@
     <img id ="imgUpload" src=""width="100vm"> -->
 
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
+
     <script>
-      
       document.getElementById('toggle-button').addEventListener('click', function () {
             toggle(document.querySelectorAll('.target'));
         });
@@ -239,8 +276,7 @@
       }
     }
     </script>
-
     <script src="app.js"></script>
+
   </body>
-  
 </html>
