@@ -1,66 +1,64 @@
 const config = {
-    apiKey: "AIzaSyCjU3LdLirPE5vk5CfbNVxx-Jch_8rpoQI",
-    authDomain: "dt-practice.firebaseapp.com",
-    databaseURL: "https://dt-practice.firebaseio.com",
-    projectId: "dt-practice",
-    storageBucket: "dt-practice.appspot.com",
-    messagingSenderId: "931808548280",
-    appId: "1:931808548280:web:e9ba50ee9fb864311aab4d",
-    measurementId: "G-38YHSQH40N"
+  apiKey: "AIzaSyCjU3LdLirPE5vk5CfbNVxx-Jch_8rpoQI",
+  authDomain: "dt-practice.firebaseapp.com",
+  databaseURL: "https://dt-podcastuploads.firebaseio.com/",
+  projectId: "dt-practice",
+  storageBucket: "dt-practice.appspot.com",
+  messagingSenderId: "931808548280",
+  appId: "1:931808548280:web:e9ba50ee9fb864311aab4d",
+  measurementId: "G-38YHSQH40N"
 };
 
 firebase.initializeApp(config);
-
-const history = createBrowserHistory();
-
-var requests = firebase.database().ref("/published-episodes");
+var requests = firebase.database().ref("/published-episodes/");
 var selectedFile;
+
+function getID(id) {
+  return document.getElementById(id).value;
+}
 
 /*
 $("#file").on("change", function(event) {
-    
+  
 });*/
-
-    
+  
 document.getElementById("file").addEventListener("change",(e) => {
-        e.preventDefault();
-        
-        selectedFile = event.target.files[0];
-        var filename = selectedFile.name;
-        var storageRef = requests.child(filename);
-        var uploadTask = storageRef.put(selectedFile);
+      e.preventDefault();
+      
+      
+      uploadForm.set({
+          podcastName : getID("inputPCName"),
+          episodeName : getID("inputEpisodeName"),
+          podcastInfo : getID("inputDescription"),
+          userEmail : getID("inputEmail"),
+          rSS : getID("inputRSS"),
+          fileUpload : getID("file")
+      });
 
-        uploadTask.on('stage_changed', function(snapshot) {
+      selectedFile = event.target.files[0];
+      var filename = selectedFile.name;
+      var storageRef = requests.child(fileUpload);
+      var uploadTask = storageRef.put(selectedFile);
 
-        }, function(error) {
-            //unsuccesful
-        }, function() {
-            var downloadURL = uploadTask.snapshot.downloadURL;
-            console.log(downloadURL);
-        });
+      uploadTask.on('stage_changed', function(snapshot) {
+
+      }, function(error) {
+          //unsuccesful
+      }, function() {
+          var downloadURL = uploadTask.snapshot.downloadURL;
+          console.log(downloadURL);
+      });
 
 
-        var uploadForm = uploads.push();
-    
-        uploadForm.set({
-            podcastName : getID("inputPCName"),
-            episodeName : getID("inputEpisodeName"),
-            podcastInfo : getID("inputDescription"),
-            userEmail : getID("inputEmail"),
-            rSS : getID("inputRSS"),
-            fileUpload : getID("file")
-        });
-        
-        alert("Request submitted!");
-        console.log("Request submitted");
-        document.getElementById("uploads").reset();
-        window.location.href = 'https://publish.spext.co';
+      var uploadForm = uploads.push();
+      
+      alert("Request submitted!");
+      console.log("Request submitted");
+      document.getElementById("uploads").reset();
+      window.location.href = 'https://publish.spext.co';
 });
 
 
-function getID(id) {
-    return document.getElementById(id).value;
-}
 /* code from Google git documentation
     var auth = firebase.auth();
     var storageRef = firebase.storage().ref();
