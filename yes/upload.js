@@ -26,22 +26,22 @@ document.getElementById("file").addEventListener("change",(e) => {
       e.preventDefault();
       
       
-      uploadForm.set({
-          podcastName : getID("inputPCName"),
-          episodeName : getID("inputEpisodeName"),
-          podcastInfo : getID("inputDescription"),
-          userEmail : getID("inputEmail"),
-          rSS : getID("inputRSS"),
-          fileUpload : getID("file")
-      });
+      // uploadForm.set({
+      //     podcastName : getID("inputPCName"),
+      //     episodeName : getID("inputEpisodeName"),
+      //     podcastInfo : getID("inputDescription"),
+      //     userEmail : getID("inputEmail"),
+      //     rSS : getID("inputRSS"),
+      //     fileUpload : getID("file")
+      // });
 
       selectedFile = event.target.files[0];
       var filename = selectedFile.name;
-      var storageRef = requests.child(fileUpload);
+      var storageRef = firebase.storage().ref().child(filename);
       var uploadTask = storageRef.put(selectedFile);
 
-      uploadTask.on('stage_changed', function(snapshot) {
-
+      uploadTask.on('state_changed', function(snapshot) {
+      console.log('snapshot', snapshot)
       }, function(error) {
           //unsuccesful
       }, function() {
@@ -50,12 +50,12 @@ document.getElementById("file").addEventListener("change",(e) => {
       });
 
 
-      var uploadForm = uploads.push();
+      // var uploadForm = uploads.push();
       
-      alert("Request submitted!");
-      console.log("Request submitted");
-      document.getElementById("uploads").reset();
-      window.location.href = 'https://publish.spext.co';
+      // alert("Request submitted!");
+      // console.log("Request submitted");
+      // document.getElementById("uploads").reset();
+      // window.location.href = 'https://publish.spext.co';
 });
 
 

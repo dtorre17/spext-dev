@@ -11,6 +11,9 @@ const config = {
 
 firebase.initializeApp(config);
 
+function getID(id) {
+  return document.getElementById(id).value;
+}
 
 var requests = firebase.database().ref("/podcast-requests");
 
