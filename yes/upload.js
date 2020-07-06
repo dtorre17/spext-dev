@@ -15,8 +15,9 @@ function getID(id) {
   return document.getElementById(id).value;
 }
 
+var uploads = firebase.database().ref("/published-episodes");
 var selectedFile;
-var downloadURL;
+
 
 document.getElementById("file").addEventListener("change",(e) => {
       e.preventDefault();
@@ -31,15 +32,18 @@ document.getElementById("file").addEventListener("change",(e) => {
       }, function(error) {
           //unsuccesful
       }, function() {
-          downloadURL = uploadTask.snapshot.downloadURL;
+          var downloadURL = uploadTask.snapshot.downloadURL;
           console.log(downloadURL);
       });
 });
 
-var uploads = firebase.database().ref("/published-episodes");
+const form = document.getElementById('form');
+form.addEventListener('submit', uploadSubmit);
 
-document.getElementById("form").addEventListener("submit",(e) => {
-  e.preventDefault();
+function uploadSubmit(event) {
+  
+  event.preventDefault();
+
   var uploadForm = uploads.push();
   
   uploadForm.set({
@@ -52,4 +56,4 @@ document.getElementById("form").addEventListener("submit",(e) => {
    });
    alert("Request submitted!");
 
-});
+}
