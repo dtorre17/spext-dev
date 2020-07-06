@@ -141,7 +141,7 @@
         <hr COLOR="#FFFFFF" SIZE="2" class = "shadow">
       </div>
       <pre id = 'uploads'></pre>
-      <form class="form-inline d-flex" id='uploads'>
+      <form class="form-inline d-flex" id='form'>
         <!-- input PC name -->
         <p class="step1" id = "a" id="input1"> Podcast Name *</p>
         <input class="step1" type="text" id="inputPCName" required>
@@ -161,15 +161,6 @@
         <button id="toggle-button" class="button2">Next</button>
     </div>
     <!-- end of step 1 -->
-      <!-- PRACTICE 
-      <button id="toggle-button">Toggle display</button>
-
-      <span class="target">Toggle the span.</span>
-
-      <div class="target">Toggle the div.</div>-->
-    
-
-      
       
     <!-- step 2 -->
     <div>
@@ -182,21 +173,20 @@
           go back -->
           <div class="target" id="container">
             <button id="toggle-back"class="button2">back</button>
-            <pre id = 'uploads'></pre>
-            <form class="form-inline d-flex" id='uploads'>
-                <div class="target">
+            <pre id = 'uploadForm'></pre>
+            <form class="form-inline d-flex" id='form'>  
+              <div class="target">
                   <!-- upload art -->
                   
                   <label class="button3"> 
                     Upload Album Art *
                     <input type="file" id="file" class="upload-group" required>
-                  </label>                
-                </div>
-            <div class="target">
-              <button type="submit" class="button2" id="uploadButton">submit</button>
-              <!-- <button type="submit" class="button2">Submit</button> -->
-            </div>
-          </form>
+                  </label>               
+              </div>
+                
+                  <button type="submit" class="button2">submit</button>
+                
+              </form>
           </div>  
     </div>
         <!-- end of step 2-->
