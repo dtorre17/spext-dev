@@ -22,10 +22,11 @@ var storageRef;
 var uploadTask;
 var downloadURL;
 
-document.getElementById("file").addEventListener("change",(e) => {
+function onFileChanged(event) {
+
       e.preventDefault();
       
-      selectedFile = e.target.files[0];
+      selectedFile = event.target.files[0];
       filename = selectedFile.name;
       storageRef = firebase.storage().ref().child(filename);
       uploadTask = storageRef.put(selectedFile);
@@ -33,11 +34,11 @@ document.getElementById("file").addEventListener("change",(e) => {
       uploadTask.on('state_changed', function(snapshot) {
       console.log('snapshot', snapshot)
       }, function(error) {
-          //unsuccesful
+          console.log("error");
       }, function() {
           downloadURL = uploadTask.snapshot.downloadURL;
       });
-});
+}
 
 
 document.getElementById("form").addEventListener("submit",(e) => {
@@ -52,7 +53,7 @@ document.getElementById("form").addEventListener("submit",(e) => {
        podcastInfo : getID("inputDescription"),
        userEmail : getID("inputEmail"),
        rSS : getID("inputRSS"),
-       fileUpload : getID("file")
+       fileUpload : downloadURL
    });
    alert("Request submitted!");
 
