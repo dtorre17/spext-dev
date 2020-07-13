@@ -179,8 +179,9 @@
                   <!-- upload art -->        
                   <label class="button3"> 
                     Upload Album Art *
-                    <input type="file" id="file" class="upload-group" required>
-                  </label>               
+                    <input type="file" id="file" class="upload-group" accept=".jpeg,.jpg,.png,.svg" required>
+                  </label>   
+                  <img [src]="downloadableURL"  onerror="this.onerror=null; this.src='assets/noimage.jpg';" style="padding-left: 40px;" width="200px" height="200px"/>            
               </div>    
               <button type="submit" class="button2">submit</button>
           </div> 

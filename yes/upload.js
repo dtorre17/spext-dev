@@ -17,32 +17,32 @@ function getID(id) {
 
 var uploads = firebase.database().ref("/published-episodes");
 var selectedFile;
-
+var filename;
+var storageRef;
+var uploadTask;
+var downloadURL;
 
 document.getElementById("file").addEventListener("change",(e) => {
       e.preventDefault();
       
-      selectedFile = event.target.files[0];
-      var filename = selectedFile.name;
-      var storageRef = firebase.storage().ref().child(filename);
-      var uploadTask = storageRef.put(selectedFile);
+      selectedFile = e.target.files[0];
+      filename = selectedFile.name;
+      storageRef = firebase.storage().ref().child(filename);
+      uploadTask = storageRef.put(selectedFile);
 
       uploadTask.on('state_changed', function(snapshot) {
       console.log('snapshot', snapshot)
       }, function(error) {
           //unsuccesful
       }, function() {
-          var downloadURL = uploadTask.snapshot.downloadURL;
-          console.log(downloadURL);
+          downloadURL = uploadTask.snapshot.downloadURL;
       });
 });
 
-const form = document.getElementById('form');
-form.addEventListener('submit', uploadSubmit);
 
-function uploadSubmit(event) {
+document.getElementById("form").addEventListener("submit",(e) => {
   
-  event.preventDefault();
+  e.preventDefault();
 
   var uploadForm = uploads.push();
   
@@ -56,4 +56,4 @@ function uploadSubmit(event) {
    });
    alert("Request submitted!");
 
-}
+});
