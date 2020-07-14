@@ -24,7 +24,7 @@ var downloadURL;
 
 function onFileChanged(event) {
 
-      e.preventDefault();
+      event.preventDefault();
       
       selectedFile = event.target.files[0];
       filename = selectedFile.name;
