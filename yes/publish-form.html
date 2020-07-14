@@ -159,7 +159,7 @@
           <p class="step1" id="a" id="input1"> RSS Link</p>
           <input class="step1" type="text" id="inputRSS">
         <!-- </form> -->
-          <button id="toggle-button" class="button2">Next</button>
+          <button type="button" id="toggle-button" class="button2">Next</button>
       </div>
     <!-- end of step 1 -->
       
@@ -175,12 +175,12 @@
             <pre id = 'uploadForm'></pre>
             <form class="form-inline d-flex" id='form'>  -->
               <div class="target" id="container">
-                <button id="toggle-back"class="button2">back</button>
+                <button type="button" id="toggle-back"class="button2">back</button>
                   <div class="target">
                       <!-- upload art -->        
                       <label class="button3"> 
                         Upload Album Art *
-                        <input type="file" id="file" name="file" (input)="onFileChanged($event)" class="upload-group" accept=".jpeg,.jpg,.png,.svg" required>
+                        <input type="file" id="file" name="file" (input)="onFileChanged($event)" class="upload-group" accept=".jpeg,.jpg,.png,.svg">
                       </label>   
                       <!-- preview image  
                       <img [src]="downloadableURL"  onerror="this.onerror=null; this.src='assets/noimage.jpg';" style="padding-left: 40px;" width="200px" height="200px"/>      

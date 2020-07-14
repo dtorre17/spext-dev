@@ -16,27 +16,22 @@ function getID(id) {
 }
 
 var uploads = firebase.database().ref("/published-episodes");
-var selectedFile;
-var filename;
-var storageRef;
-var uploadTask;
-var downloadURL;
 
 function onFileChanged(event) {
 
       event.preventDefault();
       
-      selectedFile = event.target.files[0];
-      filename = selectedFile.name;
-      storageRef = firebase.storage().ref().child(filename);
-      uploadTask = storageRef.put(selectedFile);
+      var selectedFile = event.target.files[0];
+      var filename = selectedFile.name;
+      var storageRef = firebase.storage().ref().child(filename);
+      var uploadTask = storageRef.put(selectedFile);
 
       uploadTask.on('state_changed', function(snapshot) {
       console.log('snapshot', snapshot)
       }, function(error) {
           console.log("error");
       }, function() {
-          downloadURL = uploadTask.snapshot.downloadURL;
+          var downloadURL = uploadTask.snapshot.downloadURL;
       });
 }
 
@@ -53,7 +48,7 @@ document.getElementById("form").addEventListener("submit",(e) => {
        podcastInfo : getID("inputDescription"),
        userEmail : getID("inputEmail"),
        rSS : getID("inputRSS"),
-       fileUpload : downloadURL
+       fileUpload : getID("file")
    });
    alert("Request submitted!");
 
