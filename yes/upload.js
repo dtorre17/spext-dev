@@ -17,8 +17,8 @@ function getID(id) {
 
 var uploads = firebase.database().ref("/published-episodes");
 
-function onFileChanged(event) {
-
+//function onFileChanged(event) {
+  document.getElementById("file").addEventListener("change",(event) => {
       event.preventDefault();
       
       var selectedFile = event.target.files[0];
@@ -33,7 +33,7 @@ function onFileChanged(event) {
       }, function() {
           var downloadURL = uploadTask.snapshot.downloadURL;
       });
-}
+  });
 
 
 document.getElementById("form").addEventListener("submit",(e) => {

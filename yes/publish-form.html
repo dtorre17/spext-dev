@@ -180,7 +180,7 @@
                       <!-- upload art -->        
                       <label class="button3"> 
                         Upload Album Art *
-                        <input type="file" id="file" name="file" (input)="onFileChanged($event)" class="upload-group" accept=".jpeg,.jpg,.png,.svg">
+                        <input type="file" id="file" name="file" class="upload-group" accept=".jpeg,.jpg,.png,.svg">
                       </label>   
                       <!-- preview image  
                       <img [src]="downloadableURL"  onerror="this.onerror=null; this.src='assets/noimage.jpg';" style="padding-left: 40px;" width="200px" height="200px"/>      
@@ -189,7 +189,8 @@
                         {{ downloadableURL }}
                       </div>      
                   </div>    
-                  <button type="submit" class="button2">submit</button>
+                  <!-- <button type="submit" class="button2">submit</button> -->
+                  <button type="submit" class="button2" id="uploadButton">submit</button>
               </div> 
       </div>
   </form> 
